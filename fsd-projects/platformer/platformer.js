@@ -27,25 +27,31 @@ $(function () {
     //////////////////////////////////
 
     // TODO 1 - Enable the Grid
-    //toggleGrid();
+    toggleGrid();
 
     // TODO 2 - Create Platforms
     createPlatform(500, 0, 20, 290);
-    createPlatform(1350, 400, 50, 50, "red");
-    createPlatform(100, 20, 10, 10, "lime");
+    createPlatform(1350, 480, 50, 50, "red" );
+    createPlatform(100, 20, 10, 30, "blue");
+    createPlatform(500,700,100,60, "green", 400,900,1);
+    createPlatform(650,700,100,100, "green") ;
+    createPlatform(1200,650,100,50, "orange");
+    createPlatform(1300,550,100,50,  "orange");
+
     // bright green for a finished platform
 
-    // TODO 3 - Create Collectables
-    createCollectable("steve", 1350, 50);
+    // TODO 3 - Create Collectables=
+    createCollectable("steve", 500, 650);
     createCollectable("diamond", 200, 170, 0.5, 0.7);
-    createCollectable("gem", 200, 100, 0, 1, 100, 300, 2);
+    createCollectable("max", 200, 100, 0, 1, 100, 300, 2);
+    
     // TODO 4 - Create Cannons
-    createCannon("top", 200, 100);
-    createCannon("right", 300, 2000);
+    createCannon("top", 500, 1800);
+    createCannon("right", 700, 1800);
+    createCannon("top",1000 , 1800 );
     //////////////////////////////////
     // ONLY CHANGE ABOVE THIS POINT //
     //////////////////////////////////
   }
-
   registerSetup(setup);
 });
