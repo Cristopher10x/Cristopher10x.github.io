@@ -1,5 +1,10 @@
-$(document).ready(function () {
-  
+$(document).ready(function greet(name) {
+  if (name === "Alice" {
+    console.log("Hello ,"+ name);
+  } else 
+    console.log("Hi there" )
+}
+greet("Alice");
 /////////////////
 // initialization
 /////////////////
