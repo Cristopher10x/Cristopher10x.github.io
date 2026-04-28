@@ -50,8 +50,6 @@ function runProgram() {
     repositionGameItem(walker);
     wallCollision();
     redrawGameItem(walker);
-
-    console.log("x:", walker.x, "y:", walker.y)
   }
 
   /* 
@@ -91,24 +89,24 @@ function handleKeyUp(event) {
 ////////////////////////// HELPER FUNCTIONS ////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 function wallCollision() {
-  var boardWidth = $("#board").width();
-  var boardHeight = $("#board").height();
-  
+  const boardWidth = $("#board").width();
+  const boardHeight = $("#board").height();
+ 
 
   if (walker.x < 0) {
-    walker.x = 0;
+    walker.x -= walker.speedX;
   }
 
-  if (walker.x > boardWidth - walkerSize) {
-    walker.x = boardWidth - walkerSize;
+  if (walker.x > boardWidth - 50 ) {
+    walker.x -= walker.speedX;
   }
 
   if (walker.y < 0) {
-    walker.y = 0;
+    walker.y -= walker.speedY;
   }
 
-  if (walker.y  > boardHeight - walkerSize) {
-    walker.y = boardHeight - walkerSize;
+  if (walker.y > boardHeight - 50 ) {
+    walker.y -= walker.speedY;
   }
 }
 
