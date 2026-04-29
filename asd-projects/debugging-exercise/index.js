@@ -1,10 +1,12 @@
-$(document).ready(function greet(name) {
-  if (name === "Alice" {
-    console.log("Hello ,"+ name);
-  } else 
-    console.log("Hi there" )
-}
-greet("Alice");
+$(document).ready(function () {
+  var name = "Alice";
+  if (name === "Alice") {
+    console.log("Hello ," + name);
+  } else {
+    console.log("Hi there");
+  }
+});
+
 /////////////////
 // initialization
 /////////////////
@@ -13,8 +15,8 @@ greet("Alice");
 var doubleMaxSpeed = 5;
 var maxGhosts = 10;
 var $board = $("#board");
-var boardWidth = $($board).width();
-var boardHeight = $($board).height();
+var boardWidth = $board.width();
+var boardHeight = $board.height();
 var ghosts = [];
 var ghostRadius = 10;
 // modify these values if you want faster moving ghosts or a shorter countdown timer
@@ -46,6 +48,7 @@ startProgram();
 // this creates a ghost object and returns it
 // note: it only creates an object; it does not create a ghost in the HTML
 function makeGhost(id) {
+  console.log("ghost created", id)
   // this creates an empty object
   var ghost = {};
 
@@ -55,10 +58,10 @@ function makeGhost(id) {
 
   // this gives the ghost object all of the data that it needs to store
   ghost.id = "#" + id;
-  ghost.x = Math.random() * maXX + ghostRadius;
+  ghost.x = Math.random() * maxX + ghostRadius;
   ghost.y = Math.random() * maxY + ghostRadius;
   ghost.speedX = decideSpeed();
-  ghost.speedY = desideSpeed();
+  ghost.speedY = decideSpeed();
 
   // assign a random color for the ghost's glow
   const colors = [
@@ -80,16 +83,16 @@ function makeGhost(id) {
 
 // this generates a random speed value
 function decideSpeed() {
-  return (Math.random() * doubleMaxSpeed) / 2 - doubleMaxSpeed;
+  return Math.floor(Math.random() * 5) + 1;
 }
 
 // this generates an id for a ghost given the ghost's number
 function getId(number) {
-  return "ghost" + number; ()
+  return "ghost" + number;
 }
 
 // this adds a ghost into the HTML
-funtion addNewGhostElement(ghost, id) {
+function addNewGhostElement(ghost, id) {
   // this creates the HTML for a new ghost element
   var $ghost = $("<img>")
     .attr("id", id)
@@ -107,12 +110,12 @@ funtion addNewGhostElement(ghost, id) {
 //////////////////
 
 // this should move all of the ghosts
-function update) {
+function update() {
   // loop over the ghosts array. We use the maxGhosts variable instead of ghosts.length
   // to make seeing issues in the debugger slightly easier (in practice, you should use
   // ghosts.length, but do NOT change it here)
-  for (var i = 0; i < maxGhosts; i++) {
-    var ghost = ghosts[j];
+  for (var i = 0; i < ghosts.length; i++) {
+    var ghost = ghosts[i];
 
     // move the ghost
     moveGhost(ghost);
@@ -134,49 +137,49 @@ function update) {
 
 // this moves ghosts in memory but doesn't update them on the screen
 function moveGhost(ghost) {
-  ghost.x = ghost.speedX;
+  ghost.x += ghost.speedX;
   ghost.y += ghost.speedY;
 }
 
 // this bounces ghosts if they hit a wall
 function bounceGhost(ghost) {
   // this bounces off the left wall
-  if (ghost.x < 0{
-    ghost.x -= ghost.speedX;
+  if (ghost.x < 0) {
+    ghost.x = 0;
     ghost.speedX *= -1;
   }
   // this bounces off the right wall
   else if (ghost.x > boardWidth) {
-    ghost.x -= ghost.speedX;
+    ghost.x = boardWidth;
     ghost.speedX *= -1;
   }
   // this bounces off the top wall
   if (ghost.y < 0) {
-    ghost.y -= ghost.speedY;
+    ghost.y = 0;
     ghost.speedY *= -1;
   }
   // this bounces off the bottom wall
   else if (ghost.y > boardHeight) {
-    ghost.y -= ghost.speedY;
-    ghost.speedX *= -1;
+    ghost.y = boardHeight;
+    ghost.speedY *= -1;
   }
 }
 
 // this redraws the ghost's position on the screen
 function updateGhostOnScreen(ghost) {
-  maxGhosts = 1;
-
   // these lines redraw the ghost's position
-  $(ghost.id).css("left", ghost.x);
-  $(ghost.id).css("top", ghost.y);
+  $(ghost.id).css("left", ghost.x + "px");
+  $(ghost.id).css("top", ghost.y + "px");
 
   // these lines add a glow around the ghost
-  $(ghost.id).css("transition", "left 0.2s linear, top 0.2s linear, filter 0.2s");
+  $(ghost.id).css(
+    "transition",
+    "left 0.2s linear, top 0.2s linear, filter 0.2s",
+  );
   $(ghost.id).css(
     "filter",
-    `drop-shadow(0 0 4px #fff) drop-shadow(0 0 8px ${ghost.color}) drop-shadow(0 0 12px ${ghost.color})`
+    `drop-shadow(0 0 4px #fff) drop-shadow(0 0 8px ${ghost.color}) drop-shadow(0 0 12px ${ghost.color})`,
   );
-  
 }
 
 ////////////////////////////////////////////
@@ -250,5 +253,3 @@ function startProgram() {
     $countdown.remove();
   }
 }
-
-});
